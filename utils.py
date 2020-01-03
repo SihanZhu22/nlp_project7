@@ -18,7 +18,7 @@ def datamuse(query, max_num):
 # part 2
 def jaccard_similarity(a, b):
     overlap = [element for element in a if element in b]
-    return 1.0 * len(overlap) / (len(a) + len(b))
+    return 1.0 * len(overlap) / ((len(a) + len(b)) - len(overlap))
 
 def simple_word_similarity(w1, w2, max_num=30):
     assert(isinstance(w1, str)), 'the first input parameter is not a string variable'
