@@ -1,4 +1,5 @@
-# project will demonstrate various methodologies for computing sentence-to-sentence similarity scores.
+# Project 7: From Word-Word to Sentence-To-Sentence semantic similarity
+This project will demonstrate various methodologies for computing sentence-to-sentence similarity scores.
 
 1. Consider the datasets of word pairs whose similarity is manually annotated, especially MC-28, Word-Sim, RG, available at [https://github.com/alexanderpanchenko/sim-eval](https://github.com/alexanderpanchenko/sim-eval). Similarly to the work on this repository, we would like to test the usefulness of any new similarity measure by computing its correlation with human judgment (using Pearson coefficient). Review how Pearson Coefficient works and identify python script to achieve this. Study Datamuse API, which outputs a set of words that are available to a query word. This API is available at [http://www.datamuse.com/api/](http://www.datamuse.com/api/). 
 
