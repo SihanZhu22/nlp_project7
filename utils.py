@@ -1,6 +1,11 @@
 import os
 import json
 import requests
+from scipy.stats import pearsonr
+import numpy as np
+import csv
+import pandas as pd
+
 
 # part 1
 def datamuse(query, max_num):
@@ -37,7 +42,7 @@ def simple_sentence_similarity(s1, s2):
     for w in s1:
         words = datamuse(w, 500)
         if not overlap_1:
-            overlap_1 = words 
+            overlap_1 = words
         else:
             overlap_1 = [element for element in words if element in overlap_1]
     overlap_1.extend(s1)
@@ -46,11 +51,10 @@ def simple_sentence_similarity(s1, s2):
     for w in s2:
         words = datamuse(w, 500)
         if not overlap_2:
-            overlap_2 = words 
+            overlap_2 = words
         else:
             overlap_2 = [element for element in words if element in overlap_2]
     overlap_2.extend(s2)
-
     return jaccard_similarity(overlap_1, overlap_2)
 
 if '__main__' == __name__:
@@ -60,3 +64,18 @@ if '__main__' == __name__:
     sentence_sim = simple_sentence_similarity('float boat with a high human', 'a dog in a big ship')
     print('sentence similarity: ', sentence_sim)
 
+#define the function to calculate all the similarities of one dataset
+def words_similarity_dataset(Dataset,max_num=30):
+    sim_list = []
+    for word_pair in Dataset:
+        w1 = word_pair[0]
+        w2 = word_pair[1]
+        similarity = simple_word_similarity(w1,w2,max_num = max_num)
+        sim_list.append(similarity)
+    return sim_list
+
+#function to calculate pearson coeffficients
+def pearson_correlation(data1, data2):
+# calculate Pearson's correlation
+    corr, _ = pearsonr(data1, data2)
+    print('Pearsons correlation: %.3f' % corr)
