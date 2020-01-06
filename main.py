@@ -18,3 +18,15 @@ sim_cal = np.array(words_similarity_dataset(mc_28,max_num = 100))#Change max num
 sim_ref = mc_28[:,2]
 sim_ref = sim_ref.astype(float)
 corr = pearson_correlation(sim_cal,sim_ref)
+
+with open('STSSa.csv', newline='') as csvfile:
+    stss = list(csv.reader(csvfile,delimiter=';'))
+
+stss = np.array(stss)
+
+sim_cal_sen = np.array(sentence_similarity_dataset(stss))
+sim_ref_sen = stss[:,2]
+sim_ref_sen = sim_ref_sen.astype(float)
+for sim in sim_ref_sen:
+    sim = sim/4
+corr_sen = pearson_correlation(sim_cal_sen,sim_ref_sen)

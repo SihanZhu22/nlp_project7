@@ -34,6 +34,23 @@ def simple_word_similarity(w1, w2, max_num=30):
 
     return jaccard_similarity(words_1, words_2)
 
+#part3
+#define the function to calculate all the similarities of one dataset
+def words_similarity_dataset(Dataset,max_num=30):
+    sim_list = []
+    for word_pair in Dataset:
+        w1 = word_pair[0]
+        w2 = word_pair[1]
+        similarity = simple_word_similarity(w1,w2,max_num = max_num)
+        sim_list.append(similarity)
+    return sim_list
+
+#function to calculate pearson coeffficients
+def pearson_correlation(data1, data2):
+# calculate Pearson's correlation
+    corr, _ = pearsonr(data1, data2)
+    print('Pearsons correlation: %.3f' % corr)
+
 # part 4
 def simple_sentence_similarity(s1, s2):
     s1 = s1.strip().split()
@@ -64,18 +81,10 @@ if '__main__' == __name__:
     sentence_sim = simple_sentence_similarity('float boat with a high human', 'a dog in a big ship')
     print('sentence similarity: ', sentence_sim)
 
-#define the function to calculate all the similarities of one dataset
-def words_similarity_dataset(Dataset,max_num=30):
+#part 5
+def sentence_similarity_dataset(Dataset):
     sim_list = []
-    for word_pair in Dataset:
-        w1 = word_pair[0]
-        w2 = word_pair[1]
-        similarity = simple_word_similarity(w1,w2,max_num = max_num)
+    for line in Dataset:
+        similarity = simple_sentence_similarity(line[0], line[1])
         sim_list.append(similarity)
     return sim_list
-
-#function to calculate pearson coeffficients
-def pearson_correlation(data1, data2):
-# calculate Pearson's correlation
-    corr, _ = pearsonr(data1, data2)
-    print('Pearsons correlation: %.3f' % corr)
